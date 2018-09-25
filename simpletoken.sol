@@ -1,16 +1,17 @@
-// Directly from ETH website
+// Slightly modified from ETH website
 
-pragma solidity ^0.4.20;
+pragma solidity ^0.4.24;
 
 contract MyToken {
     /* This creates an array with all balances */
     mapping (address => uint256) public balanceOf;
+    uint256 public totalSupply;
 
     /* Initializes contract with initial supply tokens to the creator of the contract */
-    function MyToken(
-        uint256 initialSupply
-        ) public {
-        balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
+    constructor() public {
+        uint256 initialSupply = 10000;
+        balanceOf[msg.sender] = initialSupply; // Give the creator all initial tokens
+        totalSupply = initialSupply;
     }
 
     /* Send coins */
