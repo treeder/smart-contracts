@@ -16,7 +16,7 @@ contract UberToken is DetailedERC20, StandardToken, Ownable2 {
         name = "DEMO Tokens";
         decimals = 18;
         totalSupply_ = 1000000000000000000000000000; // 1B
-        cbase = 0xADDRESS_FOR_COINBASE; // Change this to an address you own, this is where the initial supply will live
+        cbase = msg.sender; // This is where the initial supply will live, can change this if you don't want it to be the creator
         balances[cbase] = totalSupply_;
         emit Transfer(address(0), cbase, totalSupply_);
     }
