@@ -1,41 +1,16 @@
 pragma solidity ^0.4.24;
 
-import "./ownable2.sol";
-import "./lib/oz/contracts/token/ERC20/StandardToken.sol";
-import "./lib/oz/contracts/token/ERC20/DetailedERC20.sol";
+import "./lib/oz/contracts/token/ERC20/ERC20Pausable.sol";
+import "./lib/oz/contracts/token/ERC20/ERC20Capped.sol";
+import "./lib/oz/contracts/token/ERC20/ERC20Detailed.sol";
 
-contract UberToken is DetailedERC20, StandardToken, Ownable2 {
-
-    address public cbase; // coinbase for initial supply
+contract UberToken is ERC20Detailed, ERC20Capped, ERC20Pausable {
 
     // ------------------------------------------------------------------------
     // Constructor
     // ------------------------------------------------------------------------
-    constructor() public {
-        symbol = "DEMO";
-        name = "DEMO Tokens";
-        decimals = 18;
-        totalSupply_ = 1000000000000000000000000000; // 1B
-        cbase = msg.sender; // This is where the initial supply will live, can change this if you don't want it to be the creator
-        balances[cbase] = totalSupply_;
-        emit Transfer(address(0), cbase, totalSupply_);
-    }
-
-
-    /**
-    * @dev Function to mint tokens
-    * @param _to The address that will receive the minted tokens.
-    * @param _value The amount of tokens to mint.
-    * @return A boolean that indicates if the operation was successful.
-    */
-    function transferFromBase(address _to, uint256 _value) onlyOwner public returns (bool) {
-      // ALMOST THE SAME AS NORMAL transfer(..), but from coinbase
-        require(_to != address(0));
-        require(_value <= balances[cbase]);
-
-        balances[cbase] = balances[cbase].sub(_value);
-        balances[_to] = balances[_to].add(_value);
-        emit Transfer(cbase, _to, _value);
-        return true;
-    }
+    constructor() 
+    ERC20Detailed("DEMO Tokens", "DEMO", 18) 
+    ERC20Capped(1000000000000000000000000000) // 1B
+    public {}
 }
