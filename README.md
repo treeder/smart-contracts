@@ -4,7 +4,7 @@ First, you'll want to clone OpenZeppelin so you can use it here:
 
 ```sh
 git clone --depth 1 --branch master https://github.com/OpenZeppelin/openzeppelin-solidity lib/oz
-rm -rf !$/.git
+rm -rf lib/oz/.git
 ```
 
 Then you can use it in your contracts like:

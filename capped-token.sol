@@ -4,7 +4,7 @@ import "./lib/oz/contracts/token/ERC20/ERC20Pausable.sol";
 import "./lib/oz/contracts/token/ERC20/ERC20Capped.sol";
 import "./lib/oz/contracts/token/ERC20/ERC20Detailed.sol";
 
-contract UberToken is ERC20Detailed, ERC20Capped, ERC20Pausable {
+contract CappedToken is ERC20Detailed, ERC20Capped, ERC20Pausable {
 
     // ------------------------------------------------------------------------
     // Constructor
